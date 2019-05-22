@@ -8,4 +8,120 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppThemeTwo" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorSecondary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="h1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextOne</item>
+        <item name="android:fontFamily">@font/work_sans_light</item>
+        <item name="android:textSize">96sp</item>
+    </style>
+
+    <style name="h2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextOne</item>
+        <item name="android:fontFamily">@font/work_sans_semibold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">60sp</item>
+    </style>
+
+    <style name="h3">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextOne</item>
+        <item name="android:fontFamily">@font/work_sans</item>
+        <item name="android:textSize">48sp</item>
+    </style>
+
+    <style name="h4">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextOne</item>
+        <item name="android:fontFamily">@font/work_sans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">34sp</item>
+    </style>
+
+    <style name="h5">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextOne</item>
+        <item name="android:fontFamily">@font/work_sans_bold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="h6">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextOne</item>
+        <item name="android:fontFamily">@font/work_sans_medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="subtitle1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextOne</item>
+        <item name="android:fontFamily">@font/work_sans</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="subtitle2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextOne</item>
+        <item name="android:fontFamily">@font/work_sans_medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="body1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextOne</item>
+        <item name="android:fontFamily">@font/work_sans</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="body2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextOne</item>
+        <item name="android:fontFamily">@font/work_sans</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextOne</item>
+        <item name="android:fontFamily">@font/work_sans_medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="caption">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextOne</item>
+        <item name="android:fontFamily">@font/work_sans</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="overline">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextOne</item>
+        <item name="android:fontFamily">@font/work_sans_semibold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>
