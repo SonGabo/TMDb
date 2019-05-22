@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 
+import xyz.gabrielrohez.themoviedb.R;
+
 public class AppConfig extends Application {
 
     public static AndroidResourceManager androidResourceManager;
@@ -26,6 +28,22 @@ public class AppConfig extends Application {
 
         public AndroidResourceManager(Resources resources) {
             this.resources = resources;
+        }
+
+        public String getMessageWithoutInternetConnection() {
+            return resources.getString(R.string.no_internet_conecction);
+        }
+
+        public String getMessageRetrofitFailure() {
+            return resources.getString(R.string.retrofit_failure);
+        }
+
+        public String getMessageNoDataAvailable() {
+            return resources.getString(R.string.no_data_available);
+        }
+
+        public String getMessageError() {
+            return resources.getString(R.string.error_consulting);
         }
 
     }

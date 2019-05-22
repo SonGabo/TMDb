@@ -2,6 +2,7 @@ package xyz.gabrielrohez.themoviedb.ui.splash.view;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,16 +17,20 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.gabrielrohez.themoviedb.R;
-import xyz.gabrielrohez.themoviedb.ui.main.MainActivity;
+import xyz.gabrielrohez.themoviedb.ui.custom.ErrorDialog;
 import xyz.gabrielrohez.themoviedb.ui.splash.presenter.SplashPresenter;
-import xyz.gabrielrohez.themoviedb.ui.splash.splashinterface.SplashInterface;
+import xyz.gabrielrohez.themoviedb.ui.splash.presenter.SplashPresenterIn;
+import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
-public class SplashActivity extends AppCompatActivity implements SplashInterface.View {
+public class SplashActivity extends AppCompatActivity implements SplashView {
 
     @BindView(R.id.splashImage)
     ImageView image;
 
-    private SplashPresenter presenter;
+    private ErrorDialog dialog;
+    private Animation animation;
+    private FragmentManager manager;
+    private SplashPresenterIn presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +46,30 @@ public class SplashActivity extends AppCompatActivity implements SplashInterface
         ButterKnife.bind(this);
         presenter = new SplashPresenter(this);
 
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.animation_logo);
+        animation = AnimationUtils.loadAnimation(this, R.anim.animation_logo);
         image.startAnimation(animation);
 
         presenter.getMovies();
 
-        new Handler().postDelayed(new Runnable() {
+        /*new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
-        }, 3000);
+        }, 3000);*/
+    }
+
+    /**
+     * show a dialog with the error message
+     * @param message   String: message to show in dialog
+     */
+    @Override
+    public void showMessageError(String message) {
+        manager = getSupportFragmentManager();
+        dialog = ErrorDialog.newInstance(message);
+        dialog.show(manager, AppConstants.TAG_ERROR_DIALOG);
+        animation.cancel();
     }
 }
