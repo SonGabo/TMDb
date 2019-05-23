@@ -2,6 +2,8 @@ package xyz.gabrielrohez.themoviedb.ui.moviedetail;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,7 +38,10 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_detail);
+        getSupportActionBar().hide();
         ButterKnife.bind(this);
 
         movie = (MoviesEntity) getIntent().getSerializableExtra("movie");
@@ -45,6 +50,9 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * show detail of movie in edittext
+     */
     private void showInfo() {
         tvName.setText(movie.getOriginal_title());
         tvRate.setText(movie.getVote_average());
