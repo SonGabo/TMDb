@@ -65,6 +65,6 @@ public class ComingModel implements ComingModelIn {
                 insertMovie.execute(results);
             }
         });
-        deleteCategory.execute(AppConfig.androidResourceManager.getTopRated());
+        deleteCategory.execute(AppConfig.androidResourceManager.getUpcoming());
     }
 }

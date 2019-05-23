@@ -1,7 +1,7 @@
 package xyz.gabrielrohez.themoviedb.ui.top.view;
 
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,8 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
-import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,16 +24,14 @@ import xyz.gabrielrohez.themoviedb.R;
 import xyz.gabrielrohez.themoviedb.base.fragment.BasicFragment;
 import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.ui.adapter.MoviesAdapter;
-import xyz.gabrielrohez.themoviedb.ui.moviedetail.DetailFragment;
+import xyz.gabrielrohez.themoviedb.ui.moviedetail.DetailActivity;
 import xyz.gabrielrohez.themoviedb.ui.top.presenter.TopPresenter;
 import xyz.gabrielrohez.themoviedb.ui.top.presenter.TopPresenterIn;
-import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 
-@SuppressLint("ValidFragment")
 public class TopFragment extends BasicFragment implements TopView, MoviesAdapter.MoviesAdapterIn {
 
     @BindView(R.id.recyclerTop) RecyclerView recycler;
@@ -45,13 +43,18 @@ public class TopFragment extends BasicFragment implements TopView, MoviesAdapter
     private TopPresenterIn presenter;
     private List<MoviesEntity> list;
 
-    public TopFragment(List<MoviesEntity> topList) {
-        this.list = topList;
+    public static TopFragment newInstance(List<MoviesEntity> list) {
+        Bundle args = new Bundle();
+        args.putSerializable("list", (Serializable) list);
+        TopFragment fragment = new TopFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        list = (List<MoviesEntity>) getArguments().getSerializable("list");
         presenter = new TopPresenter(basicUIView, this);
     }
 
@@ -140,6 +143,8 @@ public class TopFragment extends BasicFragment implements TopView, MoviesAdapter
 
     @Override
     public void onItemClick(MoviesEntity movie) {
-        basicView.addFragment(DetailFragment.newInstance(movie), AppConstants.TAG_DETAIL, R.id.contentLayout);
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra("movie", (Serializable) movie);
+        startActivity(intent);
     }
 }

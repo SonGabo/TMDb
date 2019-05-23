@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:id="@+id/contentDetail"
-    android:background="#1D000000"
-    tools:context=".ui.moviedetail.DetailFragment">
+    android:background="@color/colorPrimary"
+    tools:context=".ui.moviedetail.DetailActivity">
 
     <RelativeLayout
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="@dimen/margin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="50dp"
@@ -20,8 +20,7 @@
         <ImageView
             android:id="@+id/imageDetail"
             android:layout_width="95dp"
-            android:layout_height="140dp"
-            android:src="@drawable/dummy_image_movie"/>
+            android:layout_height="140dp"/>
 
         <LinearLayout
             android:layout_toRightOf="@+id/imageDetail"

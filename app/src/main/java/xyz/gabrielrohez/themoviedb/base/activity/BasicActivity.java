@@ -17,12 +17,6 @@ public class BasicActivity extends AppCompatActivity implements BasicView, Basic
     private FragmentManager manager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
-
-    @Override
     public void showDialog(String message, int value) {
         manager = getSupportFragmentManager();
         dialog = ErrorDialog.newInstance(message, value);

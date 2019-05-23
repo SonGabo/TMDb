@@ -1,7 +1,7 @@
 package xyz.gabrielrohez.themoviedb.ui.popular.view;
 
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,15 +24,13 @@ import xyz.gabrielrohez.themoviedb.R;
 import xyz.gabrielrohez.themoviedb.base.fragment.BasicFragment;
 import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.ui.adapter.MoviesAdapter;
-import xyz.gabrielrohez.themoviedb.ui.moviedetail.DetailFragment;
+import xyz.gabrielrohez.themoviedb.ui.moviedetail.DetailActivity;
 import xyz.gabrielrohez.themoviedb.ui.popular.presenter.PopularPresenter;
 import xyz.gabrielrohez.themoviedb.ui.popular.presenter.PopularPresenterIn;
-import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-@SuppressLint("ValidFragment")
 public class PopularFragment extends BasicFragment implements PopularView, MoviesAdapter.MoviesAdapterIn {
 
     @BindView(R.id.recyclerPopular) RecyclerView recycler;
@@ -44,13 +43,18 @@ public class PopularFragment extends BasicFragment implements PopularView, Movie
     private List<MoviesEntity> list;
     private PopularPresenterIn presenter;
 
-    public PopularFragment(List<MoviesEntity> popularList) {
-        this.list = popularList;
+    public static PopularFragment newInstance(List<MoviesEntity> list) {
+        Bundle args = new Bundle();
+        args.putSerializable("list", (Serializable) list);
+        PopularFragment fragment = new PopularFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        list = (List<MoviesEntity>) getArguments().getSerializable("list");
         presenter = new PopularPresenter(basicUIView, this);
     }
 
@@ -139,6 +143,8 @@ public class PopularFragment extends BasicFragment implements PopularView, Movie
 
     @Override
     public void onItemClick(MoviesEntity movie) {
-        basicView.addFragment(DetailFragment.newInstance(movie), AppConstants.TAG_DETAIL, R.id.contentLayout);
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra("movie", (Serializable) movie);
+        startActivity(intent);
     }
 }

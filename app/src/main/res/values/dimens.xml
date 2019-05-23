@@ -12,4 +12,7 @@
     <dimen name="heightNameCardView">50dp</dimen>
     <dimen name="heightCardView">290dp</dimen>
     <dimen name="margin_medium">8dp</dimen>
+    <dimen name="appbar_padding">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
 </resources>

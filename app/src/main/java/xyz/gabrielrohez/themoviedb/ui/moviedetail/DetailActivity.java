@@ -1,12 +1,7 @@
 package xyz.gabrielrohez.themoviedb.ui.moviedetail;
 
-
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,17 +11,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import xyz.gabrielrohez.themoviedb.R;
-import xyz.gabrielrohez.themoviedb.base.fragment.BasicFragment;
 import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.utils.AppConfig;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class DetailFragment extends BasicFragment {
+public class DetailActivity extends AppCompatActivity {
 
     @BindView(R.id.detailName)
     TextView tvName;
@@ -41,31 +31,18 @@ public class DetailFragment extends BasicFragment {
     @BindView(R.id.detailReleaseDate)
     TextView tvReleaseDate;
 
-    private Unbinder unbinder;
     private MoviesEntity movie;
 
-    public static DetailFragment newInstance(MoviesEntity movie) {
-        Bundle args = new Bundle();
-        args.putSerializable("movie", movie);
-        DetailFragment fragment = new DetailFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        movie = (MoviesEntity) getArguments().getSerializable("movie");
-    }
+        setContentView(R.layout.activity_detail);
+        ButterKnife.bind(this);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_detail, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        movie = (MoviesEntity) getIntent().getSerializableExtra("movie");
 
         showInfo();
-        return view;
+
     }
 
     private void showInfo() {
@@ -79,12 +56,6 @@ public class DetailFragment extends BasicFragment {
                 .placeholder(R.drawable.default_placeholder)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .into(ivMovie);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
     }
 
     @OnClick(R.id.contentDetail)

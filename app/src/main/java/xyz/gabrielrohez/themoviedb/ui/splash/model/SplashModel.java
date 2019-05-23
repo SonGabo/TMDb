@@ -107,7 +107,7 @@ public class SplashModel implements SplashModelIn {
      */
     private void getUpcoming(final SplashPresenterListener listener) {
         if (Utils.isOnline(AppConfig.getAppContext())){
-            RetrofitClient.getInstance().retrofit.create(ApiEndpoint.class).getTopRatedMovies(AppConstants.API_KEY).enqueue(new Callback<MoviesResponse>() {
+            RetrofitClient.getInstance().retrofit.create(ApiEndpoint.class).getUpcomingMovies(AppConstants.API_KEY).enqueue(new Callback<MoviesResponse>() {
                 @Override
                 public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                     if (response.isSuccessful()){

@@ -2,6 +2,7 @@ package xyz.gabrielrohez.themoviedb.ui.coming.view;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +27,7 @@ import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.ui.adapter.MoviesAdapter;
 import xyz.gabrielrohez.themoviedb.ui.coming.presenter.ComingPresenter;
 import xyz.gabrielrohez.themoviedb.ui.coming.presenter.ComingPresenterIn;
-import xyz.gabrielrohez.themoviedb.ui.moviedetail.DetailFragment;
-import xyz.gabrielrohez.themoviedb.utils.AppConstants;
+import xyz.gabrielrohez.themoviedb.ui.moviedetail.DetailActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,13 +45,18 @@ public class ComingFragment extends BasicFragment implements ComingView, MoviesA
     private List<MoviesEntity> list;
     private ComingPresenterIn presenter;
 
-    public ComingFragment(List<MoviesEntity> comingList) {
-        this.list = comingList;
+    public static ComingFragment newInstance(List<MoviesEntity> list) {
+        Bundle args = new Bundle();
+        args.putSerializable("list", (Serializable) list);
+        ComingFragment fragment = new ComingFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        list = (List<MoviesEntity>) getArguments().getSerializable("list");
         presenter = new ComingPresenter(basicUIView, this);
     }
 
@@ -139,6 +145,8 @@ public class ComingFragment extends BasicFragment implements ComingView, MoviesA
 
     @Override
     public void onItemClick(MoviesEntity movie) {
-        basicView.addFragment(DetailFragment.newInstance(movie), AppConstants.TAG_DETAIL, R.id.contentLayout);
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra("movie", (Serializable) movie);
+        startActivity(intent);
     }
 }
