@@ -18,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.gabrielrohez.themoviedb.R;
 import xyz.gabrielrohez.themoviedb.ui.custom.ErrorDialog;
+import xyz.gabrielrohez.themoviedb.ui.main.MainActivity;
 import xyz.gabrielrohez.themoviedb.ui.splash.presenter.SplashPresenter;
 import xyz.gabrielrohez.themoviedb.ui.splash.presenter.SplashPresenterIn;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;
@@ -50,15 +51,6 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
         image.startAnimation(animation);
 
         presenter.getMovies();
-
-        /*new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }, 3000);*/
     }
 
     /**
@@ -71,5 +63,17 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
         dialog = ErrorDialog.newInstance(message);
         dialog.show(manager, AppConstants.TAG_ERROR_DIALOG);
         animation.cancel();
+    }
+
+    @Override
+    public void moviesStoredInDatabase() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 5000);
     }
 }

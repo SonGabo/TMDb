@@ -24,4 +24,11 @@ public class SplashPresenter implements SplashPresenterIn, SplashPresenterListen
             view.showMessageError(message);
         }
     }
+
+    @Override
+    public void moviesStoredInDatabase() {
+        if (view != null){
+            view.moviesStoredInDatabase();
+        }
+    }
 }

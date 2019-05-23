@@ -46,5 +46,16 @@ public class AppConfig extends Application {
             return resources.getString(R.string.error_consulting);
         }
 
+        public String getTypePopular() {
+            return resources.getString(R.string.popular);
+        }
+
+        public String getTopRated() {
+            return resources.getString(R.string.top_rated);
+        }
+
+        public String getUpcoming() {
+            return resources.getString(R.string.upcoming);
+        }
     }
 }

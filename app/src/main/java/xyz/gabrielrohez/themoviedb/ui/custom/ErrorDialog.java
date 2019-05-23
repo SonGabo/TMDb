@@ -61,14 +61,12 @@ public class ErrorDialog extends DialogFragment {
         return b.create();
     }
 
+    /**
+     * Click in button
+     */
     @OnClick(R.id.btnDialogError)
     public void OnClick(){
         dismiss();
         getActivity().finish();
-        /*if (title.getText().toString().equals(getString(R.string.please_try_again)) || title.getText().toString().equals(getString(R.string.no_info_please_try_again))){
-            startActivity(new Intent(getActivity(), SplashActivity.class));
-            getActivity().finish();
-        }else
-            getActivity().finish();*/
     }
 }
