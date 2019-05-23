@@ -9,5 +9,6 @@
     <dimen name="marginCardViewLeftRight">6dp</dimen>
     <dimen name="cardViewHeight">190dp</dimen>
     <dimen name="paddingCardView">10dp</dimen>
-    <dimen name="heightImageCardView">50dp</dimen>
+    <dimen name="heightNameCardView">50dp</dimen>
+    <dimen name="heightCardView">290dp</dimen>
 </resources>

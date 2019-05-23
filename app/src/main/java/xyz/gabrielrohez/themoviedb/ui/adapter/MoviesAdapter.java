@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -60,5 +61,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public void updateList(List<MoviesEntity> newList) {
+        list = new ArrayList<>();
+        list.addAll(newList);
+        notifyDataSetChanged();
     }
 }

@@ -27,7 +27,8 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayoutTop"
         android:background="@color/colorBackgroudRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -37,6 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>
