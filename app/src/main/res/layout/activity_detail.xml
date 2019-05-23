@@ -9,14 +9,6 @@
     android:background="@color/colorPrimary"
     tools:context=".ui.moviedetail.DetailActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:padding="@dimen/margin"
-        android:layout_height="?actionBarSize"
-        style="@style/h6"
-        android:textColor="@color/colorWhite"
-        android:text="@string/detail"/>
-
     <RelativeLayout
         android:layout_marginTop="@dimen/margin"
         android:layout_width="match_parent"

@@ -36,18 +36,21 @@
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItem"
+                android:text="@string/title_popular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/ic_popular" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItem2"
+                android:text="@string/title_top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/ic_top"/>
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItem3"
+                android:text="@string/title_upcoming"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/ic_upcoming" />
