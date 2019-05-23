@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.popular.PopularFragment">
+    android:clickable="true"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    tools:context=".ui.popular.view.PopularFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:layout_marginTop="@dimen/marginTopTab"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="popular" />
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/rounded_two"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:elevation="6dp">
 
-</FrameLayout>
+        <SearchView
+            android:id="@+id/searchViewPopular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_content"
+            android:layout_marginRight="@dimen/margin_content"/>
+
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayoutPopular"
+        android:background="@color/colorBackgroudRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerPopular"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

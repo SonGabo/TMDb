@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,8 +22,6 @@ import xyz.gabrielrohez.themoviedb.base.fragment.BasicFragment;
 import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.utils.AppConfig;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;
-
-import static com.bumptech.glide.load.engine.DiskCacheStrategy.NONE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,6 +76,7 @@ public class DetailFragment extends BasicFragment {
         tvReleaseDate.setText(movie.getRelease_date());
         Glide.with(AppConfig.getAppContext())
                 .load(AppConstants.BASE_URL_IMAGE+movie.getPoster_path())
+                .placeholder(R.drawable.default_placeholder)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .into(ivMovie);
     }

@@ -21,8 +21,6 @@ import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.utils.AppConfig;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
-import static com.bumptech.glide.load.engine.DiskCacheStrategy.NONE;
-
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
     private List<MoviesEntity> list;
@@ -51,6 +49,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         Glide.with(AppConfig.getAppContext())
                 .load(AppConstants.BASE_URL_IMAGE+list.get(i).getPoster_path())
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
+                .placeholder(R.drawable.default_placeholder)
                 .into(viewHolder.image);
     }
 
