@@ -7,13 +7,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +24,10 @@ import xyz.gabrielrohez.themoviedb.R;
 import xyz.gabrielrohez.themoviedb.base.fragment.BasicFragment;
 import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.ui.adapter.MoviesAdapter;
+import xyz.gabrielrohez.themoviedb.ui.moviedetail.DetailFragment;
 import xyz.gabrielrohez.themoviedb.ui.top.presenter.TopPresenter;
 import xyz.gabrielrohez.themoviedb.ui.top.presenter.TopPresenterIn;
+import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -139,6 +140,6 @@ public class TopFragment extends BasicFragment implements TopView, MoviesAdapter
 
     @Override
     public void onItemClick(MoviesEntity movie) {
-
+        basicView.addFragment(DetailFragment.newInstance(movie), AppConstants.TAG_DETAIL, R.id.contentLayout);
     }
 }

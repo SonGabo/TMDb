@@ -38,6 +38,7 @@ public class MainActivity extends BasicActivity implements MainView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setElevation(0);
         ButterKnife.bind(this);
         presenter = new MainPresenter(this);
 

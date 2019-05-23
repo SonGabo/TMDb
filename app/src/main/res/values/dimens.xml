@@ -11,4 +11,5 @@
     <dimen name="paddingCardView">10dp</dimen>
     <dimen name="heightNameCardView">50dp</dimen>
     <dimen name="heightCardView">290dp</dimen>
+    <dimen name="margin_medium">8dp</dimen>
 </resources>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:id="@+id/contentDetail"
+    android:background="#1D000000"
+    tools:context=".ui.moviedetail.DetailFragment">
+
+    <RelativeLayout
+        android:layout_marginTop="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="50dp"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
+        android:background="@drawable/rounded_two">
+
+        <ImageView
+            android:id="@+id/imageDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dummy_image_movie"/>
+
+        <LinearLayout
+            android:layout_toRightOf="@+id/imageDetail"
+            android:padding="@dimen/margin"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/detailName"
+                style="@style/subtitle2"/>
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_top"
+                    android:tint="@color/colorAccent"/>
+
+                <TextView
+                    android:id="@+id/detailRate"
+                    style="@style/caption"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="@string/language"
+                    android:layout_marginRight="@dimen/margin_medium"
+                    style="@style/caption"/>
+
+                <TextView
+                    android:id="@+id/detsailLaguage"
+                    style="@style/caption"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="@dimen/margin_medium"
+                android:id="@+id/detailOverview"
+                style="@style/caption"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="@string/release_date"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    style="@style/caption" />
+                <TextView
+                    android:id="@+id/detailReleaseDate"
+                    style="@style/caption" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

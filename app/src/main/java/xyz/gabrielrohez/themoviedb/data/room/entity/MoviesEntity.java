@@ -4,10 +4,12 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.io.Serializable;
+
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
 @Entity(tableName = AppConstants.movies)
-public class MoviesEntity {
+public class MoviesEntity implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
