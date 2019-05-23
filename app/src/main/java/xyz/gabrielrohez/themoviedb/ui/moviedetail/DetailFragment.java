@@ -11,6 +11,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -18,6 +21,10 @@ import butterknife.Unbinder;
 import xyz.gabrielrohez.themoviedb.R;
 import xyz.gabrielrohez.themoviedb.base.fragment.BasicFragment;
 import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
+import xyz.gabrielrohez.themoviedb.utils.AppConfig;
+import xyz.gabrielrohez.themoviedb.utils.AppConstants;
+
+import static com.bumptech.glide.load.engine.DiskCacheStrategy.NONE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,6 +77,10 @@ public class DetailFragment extends BasicFragment {
         tvLanguage.setText(movie.getOriginal_language());
         tvOverview.setText(movie.getOverview());
         tvReleaseDate.setText(movie.getRelease_date());
+        Glide.with(AppConfig.getAppContext())
+                .load(AppConstants.BASE_URL_IMAGE+movie.getPoster_path())
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
+                .into(ivMovie);
     }
 
     @Override

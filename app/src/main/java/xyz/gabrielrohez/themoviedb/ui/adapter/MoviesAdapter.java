@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +19,9 @@ import butterknife.ButterKnife;
 import xyz.gabrielrohez.themoviedb.R;
 import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.utils.AppConfig;
+import xyz.gabrielrohez.themoviedb.utils.AppConstants;
+
+import static com.bumptech.glide.load.engine.DiskCacheStrategy.NONE;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
@@ -42,6 +48,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.name.setText(list.get(i).getOriginal_title());
         viewHolder.rate.setText(list.get(i).getVote_average());
+        Glide.with(AppConfig.getAppContext())
+                .load(AppConstants.BASE_URL_IMAGE+list.get(i).getPoster_path())
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
+                .into(viewHolder.image);
     }
 
     @Override
