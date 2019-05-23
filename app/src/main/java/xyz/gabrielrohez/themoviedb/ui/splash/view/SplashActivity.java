@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.gabrielrohez.themoviedb.R;
 import xyz.gabrielrohez.themoviedb.ui.custom.ErrorDialog;
-import xyz.gabrielrohez.themoviedb.ui.main.MainActivity;
+import xyz.gabrielrohez.themoviedb.ui.main.view.MainActivity;
 import xyz.gabrielrohez.themoviedb.ui.splash.presenter.SplashPresenter;
 import xyz.gabrielrohez.themoviedb.ui.splash.presenter.SplashPresenterIn;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;

@@ -1,4 +1,4 @@
-package xyz.gabrielrohez.themoviedb.ui.main;
+package xyz.gabrielrohez.themoviedb.ui.main.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,22 +7,30 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.gabrielrohez.themoviedb.R;
+import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.ui.coming.ComingFragment;
+import xyz.gabrielrohez.themoviedb.ui.main.presenter.MainPresenter;
+import xyz.gabrielrohez.themoviedb.ui.main.presenter.MainPresenterIn;
 import xyz.gabrielrohez.themoviedb.ui.popular.PopularFragment;
 import xyz.gabrielrohez.themoviedb.ui.top.TopFragment;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainView {
 
     @BindView(R.id.nav_view)
     BottomNavigationView navView;
 
     private Fragment active;
     private TopFragment topFragment;
+    private MainPresenterIn presenter;
     private ComingFragment comingFragment;
     private FragmentManager fragmentManager;
     private PopularFragment popularFragment;
@@ -32,23 +40,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        presenter = new MainPresenter(this);
 
-        setUpComponents();
+        presenter.getPopularMovies();
 
-    }
-
-    private void setUpComponents() {
-        topFragment = new TopFragment();
-        comingFragment = new ComingFragment();
-        popularFragment = new PopularFragment();
-        fragmentManager = getSupportFragmentManager();
-        active = topFragment;
-
-        fragmentManager.beginTransaction().add(R.id.contentLayout, comingFragment, AppConstants.TAG_COMING).hide(comingFragment).commit();
-        fragmentManager.beginTransaction().add(R.id.contentLayout, topFragment, AppConstants.TAG_TOP).hide(topFragment).commit();
-        fragmentManager.beginTransaction().add(R.id.contentLayout,popularFragment, AppConstants.TAG_POPULAR).commit();
-
-        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -74,4 +69,18 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    public void setCategoryMovies(List<MoviesEntity> popularList, List<MoviesEntity> topList, List<MoviesEntity> comingList) {
+        topFragment = new TopFragment(topList);
+        comingFragment = new ComingFragment(comingList);
+        popularFragment = new PopularFragment(popularList);
+        fragmentManager = getSupportFragmentManager();
+        active = topFragment;
+
+        fragmentManager.beginTransaction().add(R.id.contentLayout, comingFragment, AppConstants.TAG_COMING).hide(comingFragment).commit();
+        fragmentManager.beginTransaction().add(R.id.contentLayout, topFragment, AppConstants.TAG_TOP).hide(topFragment).commit();
+        fragmentManager.beginTransaction().add(R.id.contentLayout,popularFragment, AppConstants.TAG_POPULAR).commit();
+
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
 }
