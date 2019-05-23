@@ -7,8 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
 
 import java.util.List;
 
@@ -20,7 +18,7 @@ import xyz.gabrielrohez.themoviedb.ui.coming.ComingFragment;
 import xyz.gabrielrohez.themoviedb.ui.main.presenter.MainPresenter;
 import xyz.gabrielrohez.themoviedb.ui.main.presenter.MainPresenterIn;
 import xyz.gabrielrohez.themoviedb.ui.popular.PopularFragment;
-import xyz.gabrielrohez.themoviedb.ui.top.TopFragment;
+import xyz.gabrielrohez.themoviedb.ui.top.view.TopFragment;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
 public class MainActivity extends AppCompatActivity implements MainView {

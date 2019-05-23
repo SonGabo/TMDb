@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:layout_height="290dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="@dimen/marginCardViwTopBottom"
+        android:layout_marginBottom="@dimen/marginCardViwTopBottom"
+        android:layout_marginLeft="@dimen/marginCardViwTopBottom"
+        android:layout_marginRight="@dimen/marginCardViwTopBottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/paddingCardView">
+
+            <ImageView
+                android:id="@+id/topImageMovie"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:layout_height="190dp"
+                android:src="@drawable/dummy_image_movie"/>
+
+            <TextView
+                android:id="@+id/topNameMovie"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/heightImageCardView"
+                android:maxLines="2"
+                android:ellipsize="end"
+                style="@style/subtitle1"
+                android:text="Name Movie"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_top"
+                    android:tint="@color/colorAccent"/>
+
+                <TextView
+                    android:id="@+id/topRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.5"
+                    style="@style/overline"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>
