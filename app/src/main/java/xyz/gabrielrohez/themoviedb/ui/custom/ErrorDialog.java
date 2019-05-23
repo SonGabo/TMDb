@@ -26,9 +26,10 @@ public class ErrorDialog extends DialogFragment {
     @BindView(R.id.btnDialogError)
     Button btnAccept;
 
-    public static ErrorDialog newInstance(String message) {
+    public static ErrorDialog newInstance(String message, int value) {
         Bundle args = new Bundle();
         args.putString("message", message);
+        args.putInt("value", value);
         ErrorDialog fragment = new ErrorDialog();
         fragment.setArguments(args);
         return fragment;
@@ -66,7 +67,10 @@ public class ErrorDialog extends DialogFragment {
      */
     @OnClick(R.id.btnDialogError)
     public void OnClick(){
-        dismiss();
-        getActivity().finish();
+        if (getArguments().getInt("value") == 0){
+            dismiss();
+            getActivity().finish();
+        } else
+            dismiss();
     }
 }

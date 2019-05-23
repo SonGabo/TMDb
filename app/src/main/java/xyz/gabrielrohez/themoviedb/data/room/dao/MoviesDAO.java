@@ -23,6 +23,9 @@ public interface MoviesDAO {
     @Query("DELETE FROM movies")
     void deleteAll();
 
+    @Query("DELETE FROM movies WHERE type=:type")
+    void deleteCategory(String type);
+
     @Query("SELECT * FROM movies")
     List<MoviesEntity> getAllMovies();
 

@@ -13,6 +13,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.gabrielrohez.themoviedb.R;
+import xyz.gabrielrohez.themoviedb.base.activity.BasicActivity;
 import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.ui.coming.ComingFragment;
 import xyz.gabrielrohez.themoviedb.ui.main.presenter.MainPresenter;
@@ -21,7 +22,7 @@ import xyz.gabrielrohez.themoviedb.ui.popular.PopularFragment;
 import xyz.gabrielrohez.themoviedb.ui.top.view.TopFragment;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends BasicActivity implements MainView {
 
     @BindView(R.id.nav_view)
     BottomNavigationView navView;

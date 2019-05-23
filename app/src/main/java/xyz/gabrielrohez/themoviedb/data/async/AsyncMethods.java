@@ -18,7 +18,7 @@ public class AsyncMethods {
     /**
      * insert movie in databa base
      * */
-    public static class InsertMovie extends AsyncTask<List<MoviesResponse.Results>, Void, Void> {
+    public static class InsertMovie extends AsyncTask<List<MoviesResponse.Results>, Void, List<MoviesEntity>> {
 
         private String type;
         private InserMovieIn listener;
@@ -29,11 +29,11 @@ public class AsyncMethods {
         }
 
         public interface InserMovieIn {
-            void storedSuccessfully();
+            void storedSuccessfully(List<MoviesEntity> moviesEntities);
         }
 
         @Override
-        protected Void doInBackground(List<MoviesResponse.Results>... lists) {
+        protected List<MoviesEntity> doInBackground(List<MoviesResponse.Results>... lists) {
             for (MoviesResponse.Results result : lists[0]){
                 MoviesEntity movies = new MoviesEntity();
                 movies.setAdult(result.getAdult());
@@ -50,12 +50,12 @@ public class AsyncMethods {
                 movies.setVote_average(String.valueOf(result.getVote_average()));
                 AppDB.getAppDB(AppConfig.getAppContext()).moviesDAO().insert(movies);
             }
-            return null;
+            return AppDB.getAppDB(AppConfig.getAppContext()).moviesDAO().getCategory(type);
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            listener.storedSuccessfully();
+        protected void onPostExecute(List<MoviesEntity> moviesEntities) {
+            listener.storedSuccessfully(moviesEntities);
         }
     }
 
@@ -105,6 +105,33 @@ public class AsyncMethods {
         @Override
         protected Void doInBackground(MoviesEntity... moviesEntities) {
             AppDB.getAppDB(AppConfig.getAppContext()).moviesDAO().delete(moviesEntities[0]);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            listener.deleteSuccessfully();
+        }
+    }
+
+    /**
+     * delete category from data base
+     */
+    public static class DeleteCategory extends AsyncTask<String, Void, Void> {
+
+        private DeleteCategoryIn listener;
+
+        public interface DeleteCategoryIn {
+            void deleteSuccessfully();
+        }
+
+        public DeleteCategory(DeleteCategoryIn listener) {
+            this.listener = listener;
+        }
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            AppDB.getAppDB(AppConfig.getAppContext()).moviesDAO().deleteCategory(strings[0]);
             return null;
         }
 

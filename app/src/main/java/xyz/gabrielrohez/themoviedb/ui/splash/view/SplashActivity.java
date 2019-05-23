@@ -60,7 +60,7 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
     @Override
     public void showMessageError(String message) {
         manager = getSupportFragmentManager();
-        dialog = ErrorDialog.newInstance(message);
+        dialog = ErrorDialog.newInstance(message, 0);
         dialog.show(manager, AppConstants.TAG_ERROR_DIALOG);
         animation.cancel();
     }

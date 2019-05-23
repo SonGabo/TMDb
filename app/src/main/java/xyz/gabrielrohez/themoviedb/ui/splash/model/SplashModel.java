@@ -2,6 +2,8 @@ package xyz.gabrielrohez.themoviedb.ui.splash.model;
 
 import android.database.Cursor;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -10,6 +12,7 @@ import xyz.gabrielrohez.themoviedb.data.network.ApiEndpoint;
 import xyz.gabrielrohez.themoviedb.data.network.RetrofitClient;
 import xyz.gabrielrohez.themoviedb.data.network.model.MoviesResponse;
 import xyz.gabrielrohez.themoviedb.data.room.db.AppDB;
+import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.ui.splash.presenter.SplashPresenterListener;
 import xyz.gabrielrohez.themoviedb.utils.AppConfig;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;
@@ -38,7 +41,7 @@ public class SplashModel implements SplashModelIn {
                             if (response.body()!=null){
                                 AsyncMethods.InsertMovie insertMovie = new AsyncMethods.InsertMovie(AppConfig.androidResourceManager.getTypePopular(), new AsyncMethods.InsertMovie.InserMovieIn() {
                                     @Override
-                                    public void storedSuccessfully() {
+                                    public void storedSuccessfully(List<MoviesEntity> moviesEntities) {
                                         getTopRated(listener);
                                     }
                                 });
@@ -72,7 +75,7 @@ public class SplashModel implements SplashModelIn {
                         if (response.body()!=null){
                             AsyncMethods.InsertMovie insertMovie = new AsyncMethods.InsertMovie(AppConfig.androidResourceManager.getTopRated(), new AsyncMethods.InsertMovie.InserMovieIn() {
                                 @Override
-                                public void storedSuccessfully() {
+                                public void storedSuccessfully(List<MoviesEntity> moviesEntities) {
                                     getUpcoming(listener);
                                 }
                             });
@@ -111,7 +114,7 @@ public class SplashModel implements SplashModelIn {
                         if (response.body()!=null){
                             AsyncMethods.InsertMovie insertMovie = new AsyncMethods.InsertMovie(AppConfig.androidResourceManager.getUpcoming(), new AsyncMethods.InsertMovie.InserMovieIn() {
                                 @Override
-                                public void storedSuccessfully() {
+                                public void storedSuccessfully(List<MoviesEntity> moviesEntities) {
                                     listener.moviesStoredInDatabase();
                                 }
                             });
