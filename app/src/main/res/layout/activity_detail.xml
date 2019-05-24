@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/imageDetail"
-            android:layout_width="95dp"
-            android:layout_height="140dp"/>
+            android:layout_width="@dimen/widthDetailMovie"
+            android:layout_height="@dimen/heightDetailMovie"/>
 
         <LinearLayout
             android:layout_toRightOf="@+id/imageDetail"

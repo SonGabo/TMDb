@@ -113,7 +113,10 @@ public class PopularFragment extends BasicFragment implements PopularView, Movie
      */
     private void setUpRecycler() {
         adapter = new MoviesAdapter(list, this);
-        recycler.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+            recycler.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        else
+            recycler.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         recycler.setHasFixedSize(true);
         recycler.setAdapter(adapter);
         adapter.notifyDataSetChanged();

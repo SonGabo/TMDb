@@ -25,7 +25,7 @@
                 android:id="@+id/topImageMovie"
                 android:layout_width="match_parent"
                 android:scaleType="fitXY"
-                android:layout_height="190dp"
+                android:layout_height="@dimen/heightImageItem"
                 android:src="@drawable/dummy_image_movie"/>
 
             <TextView
