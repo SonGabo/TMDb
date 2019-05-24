@@ -37,8 +37,11 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null)
+        setTitle(getString(R.string.detail));
+
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         getSupportActionBar().setElevation(0);
         ButterKnife.bind(this);
