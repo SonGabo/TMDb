@@ -16,6 +16,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.moviedetail.DetailActivity"></activity>
         <activity
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:name=".ui.main.view.MainActivity"
             android:label="@string/title_activity_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />

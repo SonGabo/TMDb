@@ -3,6 +3,7 @@ package xyz.gabrielrohez.themoviedb.ui.fragmentcoming.view;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -148,5 +149,17 @@ public class ComingFragment extends BasicFragment implements ComingView, MoviesA
         Intent intent = new Intent(getActivity(), DetailActivity.class);
         intent.putExtra("movie", (Serializable) movie);
         startActivity(intent);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+            recycler.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        else
+            recycler.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+
+        recycler.setHasFixedSize(true);
+        recycler.setAdapter(adapter);
     }
 }

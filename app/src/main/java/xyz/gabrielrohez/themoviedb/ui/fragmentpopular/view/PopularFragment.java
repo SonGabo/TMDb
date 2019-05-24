@@ -3,11 +3,13 @@ package xyz.gabrielrohez.themoviedb.ui.fragmentpopular.view;
 
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -151,35 +153,14 @@ public class PopularFragment extends BasicFragment implements PopularView, Movie
     }
 
     @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-            SearchView searchView = (SearchView)
-                    menu.findItem(R.id.action_search).getActionView();
-            SearchManager searchManager = (SearchManager) getActivity()
-                    .getSystemService(getActivity().SEARCH_SERVICE);
-            searchView.setSearchableInfo(searchManager
-                    .getSearchableInfo(getActivity().getComponentName()));
-            // searchView.setOnQueryTextListener(null);
-            searchView.setOnQueryTextListener(new
-                                                      SearchView.OnQueryTextListener() {
-                                                          @Override
-                                                          public boolean onQueryTextSubmit(String query) {
-                                                              return false;
-                                                          }
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+            recycler.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        else
+            recycler.setLayoutManager(new GridLayoutManager(getActivity(), 3));
 
-                                                          @Override
-                                                          public boolean onQueryTextChange(String newText) {
-                                                              String userInput  = newText.toLowerCase();
-                                                              List<MoviesEntity> newList = new ArrayList<>();
-                                                              for (MoviesEntity moviesEntity : list){
-                                                                  if (moviesEntity.getOriginal_title().toLowerCase().contains(userInput)){
-                                                                      newList.add(moviesEntity);
-                                                                  }
-                                                              }
-                                                              adapter.updateList(newList);
-                                                              return true;
-                                                          }
-
-                                                      });
-        super.onPrepareOptionsMenu(menu);
+        recycler.setHasFixedSize(true);
+        recycler.setAdapter(adapter);
     }
 }
