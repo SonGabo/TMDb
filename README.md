@@ -6,23 +6,68 @@
   Aqui se encuentran clases Java que pueden heredarle sus metodos a otras Activity o Fragment, sirven como archvios
   base tanto para Activitys como Fragments y se usan para poder mostrar u ocultar por ejemplo mensajes de error al usuario sin tener que declarar
   los metodos en cada activity o fragment, simplemente hay que implementar el archivo necesario en las Activity o Fragment
+  
+  **Clases:** BasicActivity, BasicFragment, BasicUIPresenter
+  
+  **Interfaces:** BasicUIView, BasicView, BasicUIListener 
 
 ### ciruclarrevelation:
   Es un elemnto que nos permite crear una animación al momento de abrir un nuevo fragment o activity
-
+  
+  **Clases:** MyCircularRevelation
+  
 ### data:
   Esta es la capa que se encarga de manejar los datos que entran y se almacenan en la app, en ella podemos encontrar los modulos de Retrofit
   como el RetrofitClient y el ApiEndpoint que nos sirven para realizar las consultas al WS, de igual manera se encuetra el modulo de Room
   para la persisntencia de datos dentro de la app y los metodos Asyncronos para almacenar, leer y eliminar datos de la base de datos de Room.
+  
+  **Modulos:**
+ 
+    async:
+    
+      Clases: AsyncMethods
+      
+    network:
+    
+      Clases: RetrofitClient
+      Interface: ApiEndpoint
+      Model: MoviesResponse, VideoResponse 
+      
+    room:
+    
+      dao: MoviesDAO
+      db: AppDB
+      entity: MoviesEntity 
+  
 
 ### ui:
   Esta capa contiene todo lo referente a la ui de la app, se encuentrna los paquetes de cada modulo como SplashScreen y los fragmentos
   de cada categoria de peliculas, asi como los adaptadores y elementos custom como los dialogos personalizados.
+  
+  **Modulos:**
+ 
+    adapter:
+    
+      Clases: MoviesAdapter, SectionPagerAdapter
+      
+    custom:
+    
+      Clases: ErrorDialog
+      Interface: ApiEndpoint
+      Model: MoviesResponse, VideoResponse 
+      
+    fragmentcoming, fragmentpopular, fragmenttop,main, moviedetail, splash:
+      Todos incluyen 3 carpetas (model, view, presenter), en cada una se encuenta la misma estructura
+      
+      Clase: Model, Presenter, View (de cada modulo)
+      Interface: View, Presenter, Listener, Model (de cada modulo)
 
 ### utils:
  En esta capa se encuentran metodos generales que pueden ser usados desde cualquier parte de la app, por ejemplo, se encuetra el archivo
  AppConstants que contiene las constantes que se usan en la app (BASE_URL, TAG, API_KET, etc...), el archivo AppConfig que se encarga de 
  retornarnos valores como los strings para los mensajes de error en la app, Utils que es un archivo con metodos generales.
+ 
+ **Clases:** AppConfig, AppConstants, Utils
  
  
  
