@@ -15,7 +15,7 @@ public class MyCircularRevelation {
 
             // create the animator for this view (the start radius is zero)
             Animator circularReveal = ViewAnimationUtils.createCircularReveal(rootLayout, x, y, 0, finalRadius);
-            circularReveal.setDuration(1000);
+            circularReveal.setDuration(3000);
             circularReveal.setInterpolator(new AccelerateInterpolator());
 
             // make the view visible and start the animation

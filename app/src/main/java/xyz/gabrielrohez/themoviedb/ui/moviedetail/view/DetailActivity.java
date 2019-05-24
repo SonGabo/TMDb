@@ -120,24 +120,9 @@ public class DetailActivity extends YouTubeBaseActivity implements DetailView {
                 .into(ivMovie);
     }
 
-    @OnClick(R.id.contentDetail)
+    @OnClick(R.id.arrowBack)
     public void onViewClicked() {
-        getFragmentManager().popBackStack();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
+        finish();
     }
 
     /**

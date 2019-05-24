@@ -17,6 +17,8 @@
     <dimen name="heightImageItem">450dp</dimen>
     <dimen name="widthDetailMovie">285dp</dimen>
     <dimen name="heightDetailMovie">420dp</dimen>
+    <dimen name="heightYoutube">350dp</dimen>
+    <dimen name="marginTopYoutube">220dp</dimen>
 
     <!-- size text -->
     <dimen name="size_h1">100sp</dimen>

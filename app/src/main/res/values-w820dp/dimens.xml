@@ -20,6 +20,8 @@
     <dimen name="heightImageItem">450dp</dimen>
     <dimen name="widthDetailMovie">285dp</dimen>
     <dimen name="heightDetailMovie">420dp</dimen>
+    <dimen name="heightYoutube">350dp</dimen>
+    <dimen name="marginTopYoutube">280dp</dimen>
 
     <!-- size text -->
     <dimen name="size_h1">100sp</dimen>
@@ -32,4 +34,5 @@
     <dimen name="size_large">20sp</dimen>
     <dimen name="size_medium">18sp</dimen>
     <dimen name="size_small">16sp</dimen>
+
 </resources>

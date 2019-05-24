@@ -3,13 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:clickable="true"
     android:id="@+id/contentDetail"
     android:background="@color/colorPrimary"
     tools:context=".ui.moviedetail.view.DetailActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/appbar_padding_top"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarTwo"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_weight="1"
+        android:background="?attr/colorPrimary"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <ImageButton
+            android:id="@+id/arrowBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow"
+            android:background="@null"
+            android:layout_marginRight="@dimen/margin"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detail"
+            style="@style/h6"
+            android:textColor="@color/colorWhite" />
+    </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
     <RelativeLayout
+        android:layout_marginTop="@dimen/margin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/rounded_two">
@@ -99,7 +134,7 @@
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="@dimen/marginTopYoutube"
                     android:layout_marginBottom="@dimen/margin"
                     android:layout_below="@+id/contentReviews"
                     android:layout_width="match_parent"
@@ -107,7 +142,7 @@
 
                     <com.google.android.youtube.player.YouTubePlayerView
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="@dimen/heightYoutube"
                         android:visibility="visible"
                         android:layout_centerHorizontal="true"
                         android:id="@+id/youtubePlay"

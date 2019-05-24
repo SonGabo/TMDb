@@ -33,32 +33,36 @@ public class SplashModel implements SplashModelIn {
         if (icount>0){
             listener.moviesStoredInDatabase();
         } else {
-            if (Utils.isOnline(AppConfig.getAppContext())){
-                RetrofitClient.getInstance().retrofit.create(ApiEndpoint.class).getPopularMovies(AppConstants.API_KEY).enqueue(new Callback<MoviesResponse>() {
-                    @Override
-                    public void onResponse(Call<MoviesResponse> call, final Response<MoviesResponse> response) {
-                        if (response.isSuccessful()){
-                            if (response.body()!=null){
-                                AsyncMethods.InsertMovie insertMovie = new AsyncMethods.InsertMovie(AppConfig.androidResourceManager.getTypePopular(), new AsyncMethods.InsertMovie.InserMovieIn() {
-                                    @Override
-                                    public void storedSuccessfully(List<MoviesEntity> moviesEntities) {
-                                        getTopRated(listener);
-                                    }
-                                });
-                                insertMovie.execute(response.body().getResults());
+            try {
+                if (Utils.isOnline(AppConfig.getAppContext())){
+                    RetrofitClient.getInstance().retrofit.create(ApiEndpoint.class).getPopularMovies(AppConstants.API_KEY).enqueue(new Callback<MoviesResponse>() {
+                        @Override
+                        public void onResponse(Call<MoviesResponse> call, final Response<MoviesResponse> response) {
+                            if (response.isSuccessful()){
+                                if (response.body()!=null){
+                                    AsyncMethods.InsertMovie insertMovie = new AsyncMethods.InsertMovie(AppConfig.androidResourceManager.getTypePopular(), new AsyncMethods.InsertMovie.InserMovieIn() {
+                                        @Override
+                                        public void storedSuccessfully(List<MoviesEntity> moviesEntities) {
+                                            getTopRated(listener);
+                                        }
+                                    });
+                                    insertMovie.execute(response.body().getResults());
+                                }else
+                                    listener.showMessageError(AppConfig.androidResourceManager.getMessageNoDataAvailable());
                             }else
-                                listener.showMessageError(AppConfig.androidResourceManager.getMessageNoDataAvailable());
-                        }else
-                            listener.showMessageError(AppConfig.androidResourceManager.getMessageError());
-                    }
+                                listener.showMessageError(AppConfig.androidResourceManager.getMessageError());
+                        }
 
-                    @Override
-                    public void onFailure(Call<MoviesResponse> call, Throwable t) {
-                        listener.showMessageError(AppConfig.androidResourceManager.getMessageRetrofitFailure());
-                    }
-                });
-            }else
-                listener.showMessageError(AppConfig.androidResourceManager.getMessageWithoutInternetConnection());
+                        @Override
+                        public void onFailure(Call<MoviesResponse> call, Throwable t) {
+                            listener.showMessageError(AppConfig.androidResourceManager.getMessageRetrofitFailure());
+                        }
+                    });
+                }else
+                    listener.showMessageError(AppConfig.androidResourceManager.getMessageWithoutInternetConnection());
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 
@@ -66,39 +70,42 @@ public class SplashModel implements SplashModelIn {
      * consumes the web service that returns the most rated movies and stores them in the database
      */
     private void getTopRated(final SplashPresenterListener listener) {
-
-        if (Utils.isOnline(AppConfig.getAppContext())){
-            RetrofitClient.getInstance().retrofit.create(ApiEndpoint.class).getTopRatedMovies(AppConstants.API_KEY).enqueue(new Callback<MoviesResponse>() {
-                @Override
-                public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
-                    if (response.isSuccessful()){
-                        if (response.body()!=null){
-                            AsyncMethods.InsertMovie insertMovie = new AsyncMethods.InsertMovie(AppConfig.androidResourceManager.getTopRated(), new AsyncMethods.InsertMovie.InserMovieIn() {
-                                @Override
-                                public void storedSuccessfully(List<MoviesEntity> moviesEntities) {
-                                    getUpcoming(listener);
-                                }
-                            });
-                            insertMovie.execute(response.body().getResults());
-                        }else{
+        try {
+            if (Utils.isOnline(AppConfig.getAppContext())){
+                RetrofitClient.getInstance().retrofit.create(ApiEndpoint.class).getTopRatedMovies(AppConstants.API_KEY).enqueue(new Callback<MoviesResponse>() {
+                    @Override
+                    public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+                        if (response.isSuccessful()){
+                            if (response.body()!=null){
+                                AsyncMethods.InsertMovie insertMovie = new AsyncMethods.InsertMovie(AppConfig.androidResourceManager.getTopRated(), new AsyncMethods.InsertMovie.InserMovieIn() {
+                                    @Override
+                                    public void storedSuccessfully(List<MoviesEntity> moviesEntities) {
+                                        getUpcoming(listener);
+                                    }
+                                });
+                                insertMovie.execute(response.body().getResults());
+                            }else{
+                                deleteData();
+                                listener.showMessageError(AppConfig.androidResourceManager.getMessageNoDataAvailable());
+                            }
+                        }else {
                             deleteData();
-                            listener.showMessageError(AppConfig.androidResourceManager.getMessageNoDataAvailable());
+                            listener.showMessageError(AppConfig.androidResourceManager.getMessageError());
                         }
-                    }else {
-                        deleteData();
-                        listener.showMessageError(AppConfig.androidResourceManager.getMessageError());
                     }
-                }
 
-                @Override
-                public void onFailure(Call<MoviesResponse> call, Throwable t) {
-                    deleteData();
-                    listener.showMessageError(AppConfig.androidResourceManager.getMessageRetrofitFailure());
-                }
-            });
-        }else{
-            deleteData();
-            listener.showMessageError(AppConfig.androidResourceManager.getMessageWithoutInternetConnection());
+                    @Override
+                    public void onFailure(Call<MoviesResponse> call, Throwable t) {
+                        deleteData();
+                        listener.showMessageError(AppConfig.androidResourceManager.getMessageRetrofitFailure());
+                    }
+                });
+            }else{
+                deleteData();
+                listener.showMessageError(AppConfig.androidResourceManager.getMessageWithoutInternetConnection());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -106,38 +113,42 @@ public class SplashModel implements SplashModelIn {
      * consumes the web service that returns the next releases and stores them in the database
      */
     private void getUpcoming(final SplashPresenterListener listener) {
-        if (Utils.isOnline(AppConfig.getAppContext())){
-            RetrofitClient.getInstance().retrofit.create(ApiEndpoint.class).getUpcomingMovies(AppConstants.API_KEY).enqueue(new Callback<MoviesResponse>() {
-                @Override
-                public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
-                    if (response.isSuccessful()){
-                        if (response.body()!=null){
-                            AsyncMethods.InsertMovie insertMovie = new AsyncMethods.InsertMovie(AppConfig.androidResourceManager.getUpcoming(), new AsyncMethods.InsertMovie.InserMovieIn() {
-                                @Override
-                                public void storedSuccessfully(List<MoviesEntity> moviesEntities) {
-                                    listener.moviesStoredInDatabase();
-                                }
-                            });
-                            insertMovie.execute(response.body().getResults());
-                        }else{
+        try {
+            if (Utils.isOnline(AppConfig.getAppContext())){
+                RetrofitClient.getInstance().retrofit.create(ApiEndpoint.class).getUpcomingMovies(AppConstants.API_KEY).enqueue(new Callback<MoviesResponse>() {
+                    @Override
+                    public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+                        if (response.isSuccessful()){
+                            if (response.body()!=null){
+                                AsyncMethods.InsertMovie insertMovie = new AsyncMethods.InsertMovie(AppConfig.androidResourceManager.getUpcoming(), new AsyncMethods.InsertMovie.InserMovieIn() {
+                                    @Override
+                                    public void storedSuccessfully(List<MoviesEntity> moviesEntities) {
+                                        listener.moviesStoredInDatabase();
+                                    }
+                                });
+                                insertMovie.execute(response.body().getResults());
+                            }else{
+                                deleteData();
+                                listener.showMessageError(AppConfig.androidResourceManager.getMessageNoDataAvailable());
+                            }
+                        }else {
                             deleteData();
-                            listener.showMessageError(AppConfig.androidResourceManager.getMessageNoDataAvailable());
+                            listener.showMessageError(AppConfig.androidResourceManager.getMessageError());
                         }
-                    }else {
-                        deleteData();
-                        listener.showMessageError(AppConfig.androidResourceManager.getMessageError());
                     }
-                }
 
-                @Override
-                public void onFailure(Call<MoviesResponse> call, Throwable t) {
-                    deleteData();
-                    listener.showMessageError(AppConfig.androidResourceManager.getMessageRetrofitFailure());
-                }
-            });
-        }else {
-            deleteData();
-            listener.showMessageError(AppConfig.androidResourceManager.getMessageWithoutInternetConnection());
+                    @Override
+                    public void onFailure(Call<MoviesResponse> call, Throwable t) {
+                        deleteData();
+                        listener.showMessageError(AppConfig.androidResourceManager.getMessageRetrofitFailure());
+                    }
+                });
+            }else {
+                deleteData();
+                listener.showMessageError(AppConfig.androidResourceManager.getMessageWithoutInternetConnection());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
