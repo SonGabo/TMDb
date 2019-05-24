@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.moviedetail.DetailActivity"></activity>
         <activity
-            android:name=".ui.main.view.TabbedActivity"
+            android:name=".ui.main.view.MainActivity"
             android:label="@string/title_activity_tabbed"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.splash.view.SplashActivity">

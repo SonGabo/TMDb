@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:orientation="vertical"
-    tools:context=".ui.popular.view.PopularFragment">
+    tools:context=".ui.fragmentpopular.view.PopularFragment">
 
     <LinearLayout
         android:layout_marginTop="@dimen/marginTopTab"

@@ -7,9 +7,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.List;
 
 import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
-import xyz.gabrielrohez.themoviedb.ui.coming.view.ComingFragment;
-import xyz.gabrielrohez.themoviedb.ui.popular.view.PopularFragment;
-import xyz.gabrielrohez.themoviedb.ui.top.view.TopFragment;
+import xyz.gabrielrohez.themoviedb.ui.fragmentcoming.view.ComingFragment;
+import xyz.gabrielrohez.themoviedb.ui.fragmentpopular.view.PopularFragment;
+import xyz.gabrielrohez.themoviedb.ui.fragmenttop.view.TopFragment;
 
 public class SectionPagerAdapter extends FragmentPagerAdapter {
 
