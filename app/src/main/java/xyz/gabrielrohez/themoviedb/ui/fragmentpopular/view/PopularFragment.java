@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -31,6 +33,7 @@ import xyz.gabrielrohez.themoviedb.ui.adapter.MoviesAdapter;
 import xyz.gabrielrohez.themoviedb.ui.moviedetail.DetailActivity;
 import xyz.gabrielrohez.themoviedb.ui.fragmentpopular.presenter.PopularPresenter;
 import xyz.gabrielrohez.themoviedb.ui.fragmentpopular.presenter.PopularPresenterIn;
+import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -150,9 +153,18 @@ public class PopularFragment extends BasicFragment implements PopularView, Movie
 
     @Override
     public void onItemClick(MoviesEntity movie) {
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), view, "transition");
+        int revealX = (int) (view.getX() + view.getWidth() / 2);
+        int revealY = (int) (view.getY() + view.getHeight() / 2);
+
         Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra(AppConstants.EXTRA_CIRCULAR_REVEAL_X, revealX);
+        intent.putExtra(AppConstants.EXTRA_CIRCULAR_REVEAL_Y, revealY);
         intent.putExtra("movie", (Serializable) movie);
-        startActivity(intent);
+
+        ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+
     }
 
     @Override

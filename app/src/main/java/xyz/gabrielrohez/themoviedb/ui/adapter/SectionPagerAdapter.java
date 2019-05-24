@@ -10,6 +10,7 @@ import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.ui.fragmentcoming.view.ComingFragment;
 import xyz.gabrielrohez.themoviedb.ui.fragmentpopular.view.PopularFragment;
 import xyz.gabrielrohez.themoviedb.ui.fragmenttop.view.TopFragment;
+import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
 public class SectionPagerAdapter extends FragmentPagerAdapter {
 
@@ -51,9 +52,9 @@ public class SectionPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
-            case 0: return "POPULAR";
-            case 1: return "TOP";
-            case 2: return "COMING";
+            case 0: return AppConstants.TAG_POPULAR;
+            case 1: return AppConstants.TAG_TOP;
+            case 2: return AppConstants.TAG_COMING;
         }
         return "";
     }

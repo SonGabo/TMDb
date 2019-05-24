@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -28,6 +30,7 @@ import xyz.gabrielrohez.themoviedb.ui.adapter.MoviesAdapter;
 import xyz.gabrielrohez.themoviedb.ui.moviedetail.DetailActivity;
 import xyz.gabrielrohez.themoviedb.ui.fragmenttop.presenter.TopPresenter;
 import xyz.gabrielrohez.themoviedb.ui.fragmenttop.presenter.TopPresenterIn;
+import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,10 +42,11 @@ public class TopFragment extends BasicFragment implements TopView, MoviesAdapter
     @BindView(R.id.searchViewTop) SearchView searchView;
     @BindView(R.id.swipeRefreshLayoutTop) SwipeRefreshLayout refreshLayout;
 
+    private View view;
     private Unbinder unbinder;
     private MoviesAdapter adapter;
-    private TopPresenterIn presenter;
     private List<MoviesEntity> list;
+    private TopPresenterIn presenter;
 
     public static TopFragment newInstance(List<MoviesEntity> list) {
         Bundle args = new Bundle();
@@ -62,7 +66,7 @@ public class TopFragment extends BasicFragment implements TopView, MoviesAdapter
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_top, container, false);
+        view = inflater.inflate(R.layout.fragment_top, container, false);
         unbinder = ButterKnife.bind(this, view);
 
         setUpEvents();
@@ -147,9 +151,16 @@ public class TopFragment extends BasicFragment implements TopView, MoviesAdapter
 
     @Override
     public void onItemClick(MoviesEntity movie) {
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), view, "transition");
+        int revealX = (int) (view.getX() + view.getWidth() / 2);
+        int revealY = (int) (view.getY() + view.getHeight() / 2);
+
         Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra(AppConstants.EXTRA_CIRCULAR_REVEAL_X, revealX);
+        intent.putExtra(AppConstants.EXTRA_CIRCULAR_REVEAL_Y, revealY);
         intent.putExtra("movie", (Serializable) movie);
-        startActivity(intent);
+
+        ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
     }
 
     @Override

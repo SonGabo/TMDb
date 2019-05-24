@@ -1,10 +1,14 @@
 package xyz.gabrielrohez.themoviedb.ui.moviedetail;
 
+import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -17,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import xyz.gabrielrohez.themoviedb.R;
+import xyz.gabrielrohez.themoviedb.circularrevelation.MyCircularRevelation;
 import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.utils.AppConfig;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;
@@ -30,6 +35,9 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.detailOverview) TextView tvOverview;
     @BindView(R.id.detailReleaseDate) TextView tvReleaseDate;
 
+    private int revealX;
+    private int revealY;
+    private View rootLayout;
     private MoviesEntity movie;
 
     @Override
@@ -37,19 +45,52 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ActionBar actionBar = getSupportActionBar();
+        setUpReveal(savedInstanceState);
+        ButterKnife.bind(this);
         setTitle(getString(R.string.detail));
 
+        //  show arrow back in action bar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
+        //  hide elevation in action bar
         getSupportActionBar().setElevation(0);
-        ButterKnife.bind(this);
 
+        //  get movie object
         movie = (MoviesEntity) getIntent().getSerializableExtra("movie");
 
         showInfo();
 
+    }
+
+    /**
+     * shows the animation when opening the activity
+     */
+    private void setUpReveal(Bundle savedInstanceState) {
+        final Intent intent = getIntent();
+        rootLayout = findViewById(R.id.contentDetail);
+        if (savedInstanceState == null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP &&
+                intent.hasExtra(AppConstants.EXTRA_CIRCULAR_REVEAL_X) &&
+                intent.hasExtra(AppConstants.EXTRA_CIRCULAR_REVEAL_Y)) {
+            rootLayout.setVisibility(View.INVISIBLE);
+
+            revealX = intent.getIntExtra(AppConstants.EXTRA_CIRCULAR_REVEAL_X, 0);
+            revealY = intent.getIntExtra(AppConstants.EXTRA_CIRCULAR_REVEAL_Y, 0);
+
+
+            ViewTreeObserver viewTreeObserver = rootLayout.getViewTreeObserver();
+            if (viewTreeObserver.isAlive()) {
+                viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        MyCircularRevelation.revealActivity(revealX, revealY,rootLayout, DetailActivity.this);
+                        rootLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                });
+            }
+        } else {
+            rootLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
