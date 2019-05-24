@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         android:background="@drawable/rounded_two">
 
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -95,6 +94,15 @@
                             style="@style/caption" />
 
                     </LinearLayout>
+
+
+                    <com.google.android.youtube.player.YouTubePlayerView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:visibility="visible"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/youtubePlay"
+                        android:layout_alignParentTop="true" />
 
                 </LinearLayout>
             </RelativeLayout>

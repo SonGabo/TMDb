@@ -21,7 +21,7 @@ public class DetailModel implements DetailModelIn {
                 public void onResponse(Call<VideoResponse> call, Response<VideoResponse> response) {
                     if (response.isSuccessful()){
                         if (response.body() != null){
-                            listener.loadVideo(AppConstants.BASE_YOUTUBE_URL+response.body().getResults().get(0).getKey());
+                            listener.loadVideo(response.body().getResults().get(0).getKey());
                         }else
                             listener.videoNotAailable(AppConfig.androidResourceManager.getVideoNotAvaible());
                     }else

@@ -15,6 +15,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +31,7 @@ import xyz.gabrielrohez.themoviedb.ui.moviedetail.presenter.DetailPresenterIn;
 import xyz.gabrielrohez.themoviedb.utils.AppConfig;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
-public class DetailActivity extends AppCompatActivity implements DetailView {
+public class DetailActivity extends YouTubeBaseActivity implements DetailView {
 
     @BindView(R.id.detailName) TextView tvName;
     @BindView(R.id.detailRate) TextView tvRate;
@@ -35,29 +39,31 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     @BindView(R.id.detsailLaguage) TextView tvLanguage;
     @BindView(R.id.detailOverview) TextView tvOverview;
     @BindView(R.id.detailReleaseDate) TextView tvReleaseDate;
+    @BindView(R.id.youtubePlay) YouTubePlayerView youTubePlayerView;
 
     private int revealX;
     private int revealY;
     private View rootLayout;
     private MoviesEntity movie;
     private DetailPresenterIn presenter;
+    private YouTubePlayer.OnInitializedListener onInitializedListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        ActionBar actionBar = getSupportActionBar();
+        //ActionBar actionBar = getSupportActionBar();
         setUpReveal(savedInstanceState);
         ButterKnife.bind(this);
         setTitle(getString(R.string.detail));
         presenter = new DetailPresenter(this);
 
         //  show arrow back in action bar
-        if (actionBar != null) {
+        /*if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         //  hide elevation in action bar
-        getSupportActionBar().setElevation(0);
+        getSupportActionBar().setElevation(0);*/
 
         //  get movie object
         movie = (MoviesEntity) getIntent().getSerializableExtra("movie");
@@ -137,8 +143,20 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
      * you get the url of the video and it shows on the screen
      */
     @Override
-    public void loadVideo(String url) {
+    public void loadVideo(final String url) {
         Log.d("url_video", url);
+        onInitializedListener= new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                youTubePlayer.loadVideo(url);
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+            }
+        };
+        youTubePlayerView.initialize(AppConstants.API_KEY_YOUTUBE, onInitializedListener);
     }
 
     /**
