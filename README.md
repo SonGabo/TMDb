@@ -78,7 +78,7 @@
   Mantener una buena estructura en el proyecto y que este sea mas facil de modicificar y de esta forma si llegase a requerir algun cambio ya 
   sea agregar o quitar algo, esto solo afecte directamente a su modulo, mas no a otros
 ### ¿Que caracteristicas tiene un buen código?
-  Debe estar organizado en modulos los cuales cada uno representen una funcionalidad de la app (dividir el problema en partes pequeñas para su mejor majeo),
+  Debe estar organizado en modulos los cuales cada uno representen una funcionalidad de la app (dividir el problema en partes pequeñas para su mejor manejo),
   debe tener la capacidad de reutilizar codigo, cuando una tarea se repite constantemente en todo el proyecto, es bueno poder tener una clase en la cual se
   encuentre el metodo y este pueda ser reutilizado desde cualquier parte del proyecto, debe seguir las buenas practicas como la forma en que se nombran los 
   archivos, metodos, variables, el nombre de sus metodos y variables a mi parecer debe hacer referencia a las acciones que va realizar, por ejemplo: si se 
