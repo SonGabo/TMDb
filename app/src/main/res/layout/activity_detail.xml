@@ -33,6 +33,7 @@
                     android:layout_height="@dimen/heightDetailMovie"/>
 
                 <LinearLayout
+                    android:id="@+id/contentReviews"
                     android:layout_toRightOf="@+id/imageDetail"
                     android:paddingLeft="@dimen/margin"
                     android:paddingRight="@dimen/margin"
@@ -95,6 +96,14 @@
 
                     </LinearLayout>
 
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="@dimen/margin"
+                    android:layout_below="@+id/contentReviews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <com.google.android.youtube.player.YouTubePlayerView
                         android:layout_width="match_parent"
@@ -104,6 +113,11 @@
                         android:id="@+id/youtubePlay"
                         android:layout_alignParentTop="true" />
 
+                    <TextView
+                        android:id="@+id/detailMessageVideo"
+                        android:layout_marginTop="@dimen/margin"
+                        android:layout_gravity="center_horizontal"
+                        style="@style/subtitle1"/>
                 </LinearLayout>
             </RelativeLayout>
         </ScrollView>

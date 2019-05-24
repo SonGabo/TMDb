@@ -38,6 +38,7 @@ public class DetailActivity extends YouTubeBaseActivity implements DetailView {
     @BindView(R.id.imageDetail) ImageView ivMovie;
     @BindView(R.id.detsailLaguage) TextView tvLanguage;
     @BindView(R.id.detailOverview) TextView tvOverview;
+    @BindView(R.id.detailMessageVideo)TextView detailMessage;
     @BindView(R.id.detailReleaseDate) TextView tvReleaseDate;
     @BindView(R.id.youtubePlay) YouTubePlayerView youTubePlayerView;
 
@@ -144,7 +145,6 @@ public class DetailActivity extends YouTubeBaseActivity implements DetailView {
      */
     @Override
     public void loadVideo(final String url) {
-        Log.d("url_video", url);
         onInitializedListener= new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
@@ -164,6 +164,6 @@ public class DetailActivity extends YouTubeBaseActivity implements DetailView {
      */
     @Override
     public void videoNotAailable(String message) {
-        Log.d("url_video", message);
+        detailMessage.setText(message);
     }
 }
