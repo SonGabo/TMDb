@@ -1,37 +1,25 @@
 package xyz.gabrielrohez.themoviedb.ui.main.view;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import xyz.gabrielrohez.themoviedb.R;
 import xyz.gabrielrohez.themoviedb.base.activity.BasicActivity;
 import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.ui.adapter.SectionPagerAdapter;
-import xyz.gabrielrohez.themoviedb.ui.fragmentcoming.view.ComingFragment;
-import xyz.gabrielrohez.themoviedb.ui.fragmentpopular.view.PopularFragment;
-import xyz.gabrielrohez.themoviedb.ui.fragmenttop.view.TopFragment;
 import xyz.gabrielrohez.themoviedb.ui.main.presenter.MainPresenter;
 import xyz.gabrielrohez.themoviedb.ui.main.presenter.MainPresenterIn;
-import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
 public class MainActivity extends BasicActivity implements MainView {
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.tabs)TabLayout tabs;
+    @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.container)ViewPager viewPager;
 
     private MainPresenterIn presenter;
@@ -47,12 +35,6 @@ public class MainActivity extends BasicActivity implements MainView {
 
         presenter = new MainPresenter(this);
         presenter.getPopularMovies();
-    }
-
-    @OnClick(R.id.fab)
-    public void OnClick(View view){
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
     }
 
     @Override
