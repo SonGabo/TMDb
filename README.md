@@ -84,3 +84,4 @@
   archivos, metodos, variables, el nombre de sus metodos y variables a mi parecer debe hacer referencia a las acciones que va realizar, por ejemplo: si se 
   va consumir un  WS para obtener los datos del usuario, a ese metodo lo llamaria: "getUserData", el codigo debe estar identado para tener una mejor comprención,
   en un buen codigo se deben comentar los algoritmos que sean complicados para que sea comprensible para los demás o para uno mismo en el futuro.
+  
