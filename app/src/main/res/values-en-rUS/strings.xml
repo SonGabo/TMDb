@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">TMDb</string>
+    <string name="no_internet_conecction">No internet network is detected, check your connection and try again later.</string>
+    <string name="retrofit_failure">At the moment the service is not available. Please try again later.</string>
+    <string name="no_data_available">At the moment there is no data available. Please retry later.</string>
+    <string name="error_consulting">An error occurred when consulting the information. Please try again later.</string>
+    <string name="accept">Accept</string>
+    <string name="popular">popular</string>
+    <string name="top_rated">top_rated</string>
+    <string name="upcoming">upcoming</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_popular">Popular</string>
+    <string name="title_top">Top Rated</string>
+    <string name="title_upcoming">Upcoming</string>
+
+    <string name="language">Language:</string>
+    <string name="release_date">Release Date:</string>
+    <string name="title_activity_tabbed">TabbedActivity</string>
+    <string name="detail">Detail</string>
+
+</resources>

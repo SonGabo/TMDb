@@ -23,18 +23,12 @@ import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
 public class DetailActivity extends AppCompatActivity {
 
-    @BindView(R.id.detailName)
-    TextView tvName;
-    @BindView(R.id.detailRate)
-    TextView tvRate;
-    @BindView(R.id.imageDetail)
-    ImageView ivMovie;
-    @BindView(R.id.detsailLaguage)
-    TextView tvLanguage;
-    @BindView(R.id.detailOverview)
-    TextView tvOverview;
-    @BindView(R.id.detailReleaseDate)
-    TextView tvReleaseDate;
+    @BindView(R.id.detailName) TextView tvName;
+    @BindView(R.id.detailRate) TextView tvRate;
+    @BindView(R.id.imageDetail) ImageView ivMovie;
+    @BindView(R.id.detsailLaguage) TextView tvLanguage;
+    @BindView(R.id.detailOverview) TextView tvOverview;
+    @BindView(R.id.detailReleaseDate) TextView tvReleaseDate;
 
     private MoviesEntity movie;
 
