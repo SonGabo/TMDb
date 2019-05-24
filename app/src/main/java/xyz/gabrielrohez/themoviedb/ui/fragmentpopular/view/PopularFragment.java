@@ -1,7 +1,6 @@
 package xyz.gabrielrohez.themoviedb.ui.fragmentpopular.view;
 
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -11,10 +10,8 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
@@ -30,7 +27,7 @@ import xyz.gabrielrohez.themoviedb.R;
 import xyz.gabrielrohez.themoviedb.base.fragment.BasicFragment;
 import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.ui.adapter.MoviesAdapter;
-import xyz.gabrielrohez.themoviedb.ui.moviedetail.DetailActivity;
+import xyz.gabrielrohez.themoviedb.ui.moviedetail.view.DetailActivity;
 import xyz.gabrielrohez.themoviedb.ui.fragmentpopular.presenter.PopularPresenter;
 import xyz.gabrielrohez.themoviedb.ui.fragmentpopular.presenter.PopularPresenterIn;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;

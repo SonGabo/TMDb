@@ -30,7 +30,7 @@ import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.ui.adapter.MoviesAdapter;
 import xyz.gabrielrohez.themoviedb.ui.fragmentcoming.presenter.ComingPresenter;
 import xyz.gabrielrohez.themoviedb.ui.fragmentcoming.presenter.ComingPresenterIn;
-import xyz.gabrielrohez.themoviedb.ui.moviedetail.DetailActivity;
+import xyz.gabrielrohez.themoviedb.ui.moviedetail.view.DetailActivity;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
 /**

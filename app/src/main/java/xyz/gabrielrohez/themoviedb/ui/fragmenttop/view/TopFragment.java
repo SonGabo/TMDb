@@ -27,7 +27,7 @@ import xyz.gabrielrohez.themoviedb.R;
 import xyz.gabrielrohez.themoviedb.base.fragment.BasicFragment;
 import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
 import xyz.gabrielrohez.themoviedb.ui.adapter.MoviesAdapter;
-import xyz.gabrielrohez.themoviedb.ui.moviedetail.DetailActivity;
+import xyz.gabrielrohez.themoviedb.ui.moviedetail.view.DetailActivity;
 import xyz.gabrielrohez.themoviedb.ui.fragmenttop.presenter.TopPresenter;
 import xyz.gabrielrohez.themoviedb.ui.fragmenttop.presenter.TopPresenterIn;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;

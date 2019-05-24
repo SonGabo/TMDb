@@ -17,5 +17,6 @@
     <string name="release_date">Release Date:</string>
     <string name="title_activity_tabbed">TabbedActivity</string>
     <string name="detail">Detail</string>
+    <string name="video_no_available">The video is not available in offline mode, you need an internet connection..</string>
 
 </resources>

@@ -57,5 +57,9 @@ public class AppConfig extends Application {
         public String getUpcoming() {
             return resources.getString(R.string.upcoming);
         }
+
+        public String getVideoNotAvaible() {
+            return resources.getString(R.string.video_no_available);
+        }
     }
 }

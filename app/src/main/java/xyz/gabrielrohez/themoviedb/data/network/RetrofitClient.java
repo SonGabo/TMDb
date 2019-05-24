@@ -19,8 +19,9 @@ import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
 public class RetrofitClient {
 
-    private static RetrofitClient retrofitClient;
     public Retrofit retrofit;
+    public Retrofit retrofitVideo;
+    private static RetrofitClient retrofitClient;
 
     private RetrofitClient() {
         Gson gson = new GsonBuilder()
@@ -46,6 +47,12 @@ public class RetrofitClient {
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(AppConstants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(okHttpClient)
+                .build();
+
+        retrofitVideo = new Retrofit.Builder()
+                .baseUrl(AppConstants.BASE_GET_URL_VIDEO)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
                 .build();

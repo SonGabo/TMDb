@@ -1,16 +1,15 @@
-package xyz.gabrielrohez.themoviedb.ui.moviedetail;
+package xyz.gabrielrohez.themoviedb.ui.moviedetail.view;
 
 import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,10 +22,12 @@ import butterknife.OnClick;
 import xyz.gabrielrohez.themoviedb.R;
 import xyz.gabrielrohez.themoviedb.circularrevelation.MyCircularRevelation;
 import xyz.gabrielrohez.themoviedb.data.room.entity.MoviesEntity;
+import xyz.gabrielrohez.themoviedb.ui.moviedetail.presenter.DetailPresenter;
+import xyz.gabrielrohez.themoviedb.ui.moviedetail.presenter.DetailPresenterIn;
 import xyz.gabrielrohez.themoviedb.utils.AppConfig;
 import xyz.gabrielrohez.themoviedb.utils.AppConstants;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements DetailView {
 
     @BindView(R.id.detailName) TextView tvName;
     @BindView(R.id.detailRate) TextView tvRate;
@@ -39,6 +40,7 @@ public class DetailActivity extends AppCompatActivity {
     private int revealY;
     private View rootLayout;
     private MoviesEntity movie;
+    private DetailPresenterIn presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class DetailActivity extends AppCompatActivity {
         setUpReveal(savedInstanceState);
         ButterKnife.bind(this);
         setTitle(getString(R.string.detail));
+        presenter = new DetailPresenter(this);
 
         //  show arrow back in action bar
         if (actionBar != null) {
@@ -60,6 +63,7 @@ public class DetailActivity extends AppCompatActivity {
         movie = (MoviesEntity) getIntent().getSerializableExtra("movie");
 
         showInfo();
+        presenter.getKeyFromVideo(movie.getId_movie());
 
     }
 
@@ -127,5 +131,21 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
+    }
+
+    /**
+     * you get the url of the video and it shows on the screen
+     */
+    @Override
+    public void loadVideo(String url) {
+        Log.d("url_video", url);
+    }
+
+    /**
+     * message shown when the video is unavailable
+     */
+    @Override
+    public void videoNotAailable(String message) {
+        Log.d("url_video", message);
     }
 }
